@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--Google Site where this tutorial came from-->
+<!--https://developers.google.com/maps/tutorials/fundamentals/adding-a-google-map-->
+<html>
+	<head>
+		<style>
+			#map-canvas{
+			width: 600px;
+			height: 500px;
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: 50px;
+			margin-bottom: auto;			
+			}
+		</style>
+		<script src="https://maps.googleapis.com/maps/api/js"></script>
+		<script>
+			function initialize() {
+				var mapCanvas = document.getElementById('map-canvas');
+				//Variable gets the div ('map-canvas') that the map will be load into 
+				var mapOptions = {
+					//Three essential map options
+					center: new google.maps.LatLng(42.7230, -84.4810),	//LatLng of the location where the map is centered 
+					zoom: 12,		//Zoom options between 0 (fartherst) to 22
+					mapTypeId: google.maps.MapTypeId.ROADMAP	//choose from (ROADMAP, SATELLITE, HYBRID, or TERRAIN)		
+					//More options can be found @ https://developers.google.com/maps/documentation/javascript/reference#MapOptions.
+				}
+				var map = new google.maps.Map(mapCanvas, mapOptions);
+				//Object created. Google Map 			
+			
+			//Note that map.set Needs to be in the initialization function!!!			
+			map.set('styles', [
+				{
+					featureType: 'poi',
+					elementType: 'geometry',
+					stylers:[
+						{visibility: 'off'}
+					]
+				},{
+					featureType:'road',
+					elementType:'geometry',
+					stylers: [
+						{color: '#000000'},
+						{weight: 0.2}
+					]
+				},{	
+					featureType:'road',
+					elementType:'labels',
+					stylers: [
+						{saturation: -100},
+						{invert_lightness: true}
+					]				
+				},{	//This is just the background color - Landscape
+					featureType: 'landscape',
+					elementType: 'geometry',
+					stylers: [
+						{hue: '#ff0000'},//Red
+						{gamma: 0.5},
+						{saturation: 75},
+						{lightness: 75}
+					]
+				},{	//For the POI (School): hue(color) to Green, 
+					featureType: 'poi.school',
+					elementType: 'geometry',
+					stylers: [
+						{ hue: '#00FF00' },//Green
+						{ lightness: -15 },
+						{ saturation: 99 }
+					]
+				},{	//this is a repeated Styler...
+					featureType: 'poi.school',
+					elementType: 'geometry',
+					stylers:[
+						{visibility: 'on'},
+						{hue: '#fff700'},
+						{lightness: -15},
+						{saturation: 99}
+					]
+				}
+			]);
+			//End of the map.set style section!!!!!			
+			}
+			google.maps.event.addDomListener(window, 'load', initialize);
+		</script>
+  
+	</head>
+	<body>
+		<h1>Hello World</h1>
+		<p>I'm hosted with GitHub Pages.</p>
+		<div id="map-canvas"><div>
+	</body>
+</html>
