@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<!--Google Site where this tutorial came from-->
+<!--https://developers.google.com/maps/tutorials/fundamentals/adding-a-google-map-->
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<style type="text/css">
+			#map-canvas{
+			width: 600px;
+			height: 500px;
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: 50px;
+			margin-bottom: auto;			
+			}
+		</style>
+		
+		<title>BioStation VizMap</title>
+		<meta name="description" content="Simple Tutorial - XivelyJS">
+		
+		<script src="https://maps.googleapis.com/maps/api/js"></script>
+		<script>
+			function initialize() {
+			
+			//Location LatLng of interest	
+			var myLatlng0 = new google.maps.LatLng(25.02340, 121.54535);
+			var myLatlng1 = new google.maps.LatLng(61.45027, 23.86134);
+			var myLatlng2= new google.maps.LatLng(42.29572, 276.28976);
+				
+				//Variable gets the div ('map-canvas') that the map will be load into 
+				var mapOptions = {
+					//Three essential map options
+					center: new google.maps.LatLng(25.02340, 121.54535),	//LatLng of the location where the map is centered 
+					zoom: 4,		//Zoom options between 0 (fartherst) to 22
+					//mapTypeId: google.maps.MapTypeId.ROADMAP	//choose from (ROADMAP, SATELLITE, HYBRID, or TERRAIN)		
+					//More options can be found @ https://developers.google.com/maps/documentation/javascript/reference#MapOptions.
+				}
+				
+				var mapCanvas = document.getElementById('map-canvas');				
+				
+				var map = new google.maps.Map(mapCanvas, mapOptions);
+				//Object created. Google Map 			
+				//var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+				
+			//Note that map.set Needs to be in the initialization function!!!			
+			map.set('styles', [
+				{
+					featureType: 'poi',
+					elementType: 'geometry',
+					stylers:[
+						{visibility: 'off'}
+					]
+				},{
+					featureType:'road',
+					elementType:'geometry',
+					stylers: [
+						{color: '#000000'},
+						{weight: 0.2}
+					]
+				},{	
+					featureType:'road',
+					elementType:'labels',
+					stylers: [
+						{saturation: -100},
+						{invert_lightness: true}
+					]				
+				},{	//This is just the background color - Landscape
+					featureType: 'landscape',
+					elementType: 'geometry',
+					stylers: [
+						{hue: '#ff0000'},//Red
+						{gamma: 0.5},
+						{saturation: 75},
+						{lightness: 75}
+					]
+				},{	//For the POI (School): hue(color) to Green, 
+					featureType: 'poi.school',
+					elementType: 'geometry',
+					stylers: [
+						{ hue: '#00FF00' },//Green
+						{ lightness: -15 },
+						{ saturation: 99 }
+					]
+				},{	//this is a repeated Styler...
+					featureType: 'poi.school',
+					elementType: 'geometry',
+					stylers:[
+						{visibility: 'on'},
+						{hue: '#f700ff'},	//Pink
+						{lightness: -15},
+						{saturation: 99}
+					]
+				}
+			]);
+			//End of the map.set style section!!!!!
+			
+//				var infowindow = new google.maps.InfoWindow({
+//					content: contentString				
+//				});
+
+				//Place a Google droplet marker on the map in 'map' centred at position (myLatlng0)	
+				var marker = new google.maps.Marker({
+					position: myLatlng0,
+					map: map,
+					title: 'Location 0 '
+				});
+				
+				//Place a Google droplet marker on the map in 'map' centred at position	(myLatlng1)				
+				var marker1 = new google.maps.Marker({
+					position: myLatlng1,
+					map: map,
+					title: 'Location 1 '
+				});
+
+				//Place a Google droplet marker on the map in 'map' centred at position (myLatlng2)				
+				var marker2 = new google.maps.Marker({
+					position: myLatlng2,
+					map: map,
+					title: 'Location 2 '
+				});
+							
+			google.maps.event.addListener(marker, 'click', function() {
+//					This function calls infowindow which in turn takes content string as input  
+				window.open("http://www.amazon.com");
+				//infowindow.open(map,marker);
+			});
+
+			google.maps.event.addListener(marker1, 'click', function() {
+//					This function calls infowindow which in turn takes content string as input  
+				window.open("http://www.google.com");
+				//infowindow.open(map,marker);
+			});
+
+			google.maps.event.addListener(marker2, 'click', function() {
+//					This function calls infowindow which in turn takes content string as input  
+				window.open("http://www-personal.umich.edu/~bkerkez/");
+				//infowindow.open(map,marker);
+			});
+
+
+			
+			}
+					
+			google.maps.event.addDomListener(window, 'load', initialize);
+
+			
+		</script>
+  
+	</head>
+	<body>
+	
+		<h1>Live value visualization</h1>
+		<h2><small>All Feeds</small> <span id="myfeeds"></span></h2>		<!--Header 2. With span feedId-->
+  
+  <!--All feeds included in myfeeds-->
+  <h2><small>Live datastream value</small> <span id="myelement"></span></h2>	<!--Live stream data value-->
+
+  <!--Comment from the original GitHub design-->
+		<h1>Hello World</h1>
+		<p>I'm hosted with GitHub Pages.</p>
+		
+		<!-- Here we test the variables from Branko's script -->
+		<h2><span id="feedID"></span></h2>
+		<div id="map-canvas"><div>
+	
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> <!--JQuery-->
+		<script src="http://d23cj0cdvyoxg0.cloudfront.net/xivelyjs-1.0.4.min.js"></script> <!--Xively data-->
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxKBU_sJ2cUgUNHpAAN3EOUB5drniKpqo"> </script>
+
+
+		<script><!--Here the script is in Jave Script format. Console.log(), //comment, .function-->
+		$(document).ready(function($) {
+		// Make sure the document is ready to be handled
+
+		// Set the Xively API key (https://xively.com/users/YOUR_USERNAME/keys)
+		xively.setKey( "OJ1eOyQCxDUf39mFDoV3lrkzT786ZEpCqwQBzfQhTjlhn1of" );
+
+		  // Replace with your own values
+		  var feedID        = 1817329719,          // Feed ID (the last number on the URL on the feed page on Xively)
+		  //var feedID        = 707958287,          // Feed ID (the last number on the URL on the feed page on Xively)
+		  <!--Our FeedId. 707958287 -->
+			  datastreamID  = "avgLatency";       // Datastream ID
+			  selector      = "#myelement";   // Your element on the page - takes any valid jQuery selector
+			  feedSelector  = "#myfeeds";
+		  <!-- These we keep the same-->
+				
+			var macLocations = {}; //used to store lat-lon pairs to plotnetwork paths
+			<!--Empty Object for pairs , :-->
+			var pathFeedId = 0; //used to retrieve path information
+			<!--First dummy path for operation to continue retrieving-->
+			var feedString = "<br>";
+			<!--Break Return -->
+			
+			//get all feedIds first
+			xively.feed.list ("user=klab&tag=biostation",function ( fd ) {
+			function
+			
+			
+
+				//feedString += JSON.stringify(fd["results"]) + "<br>";
+			
+				for(var i = 0; i < fd["results"].length; i++) {
+				//loop through the object's 'result' section. Loop through the whole element
+						console.log(fd["results"].length);
+						console.log(i);
+						//Print out the whole and where we are? 6-1, 6-2, ... , 6-6
+						var feed_info = fd["results"][i];
+						//parse through tags to determine the type of node and its mac address
+						var tags = feed_info["tags"];
+						var macAddress = "X";
+
+						for(var j = 0; j < tags.length; j++) {
+							if (tags[j].indexOf("type=") !=-1){
+								//if there exist a 'type=' in tags
+								//what type of feed do we have, check the tags
+								if (tags[j].indexOf("manager") !=-1){
+									type = "M";		//if manager exist in the datastream. Type M
+								}else if (tags[j].indexOf("repeater") !=-1){
+									type = "R";		//if repeater exist in the datastream. Type R
+								}else if (tags[j].indexOf("node") !=-1){
+									type = "N";		//if node exist in the datastream. Type N
+								}else if (tags[j].indexOf("paths") !=-1){
+									type = "P";		//if path exist in the datastream. Type P
+								}else{
+									type = "X";		//otherwise. Type X 
+								}
+							}else if (tags[j].indexOf("mac=") !=-1){
+								macAddress = tags[j].substr(tags[j].indexOf("=")+1);
+								//the mac address will the be datastream with substr extraction from the index() result + 1
+							}
+						}
+						//Now we have the mac address and datastream type. Log them both.
+						//Cuidado!! Still in the loop
+						console.log(type);
+						console.log(macAddress);
+					 
+						if(type=="P"){
+							feedString += feed_info["id"] + ", " + type + "<br>";
+							pathFeedId = feed_info["id"];
+						}else{	//If datastream extraction returns something !NOT Path. Log in station info
+							var lat = feed_info["location"].lat;
+							var lon = feed_info["location"].lon;
+							//use the .lat() .lon() function to retrieve the longitude/latitude information. Store it.
+							feedString += feed_info["id"] + ", " + macAddress + ", " + type + ", " + lat +  " " + lon + "<br>";
+							//add google marker data
+							var contentString = type + "<br>FeedId: " + feed_info["id"].toString();
+							//content string = where google map grab/display the data
+							var infowindow = new google.maps.InfoWindow({
+							  content: contentString
+							});
+							//
+							//Get google location from what we had
+							var myLatlng = new google.maps.LatLng(lat,lon);
+							//position the marker
+							var marker = new google.maps.Marker({
+								position: myLatlng,
+								map: map,
+								title: contentString
+							});
+							//Relate Lat/Lon with Mac address 
+							macLocations[macAddress] = myLatlng;
+							
+							//This is the Marker function
+							//This.title = Type <br> FeedId: FeedId
+							google.maps.event.addListener(marker, "click", function () {
+											infowindow.setContent(this.title);
+											infowindow.open(map, this);
+										});
+							
+					
+							/*markerArray[feed_info["id"]] =  {};
+							markerArray[feed_info["id"]]["marker"] = marker;
+							markerArray[feed_info["id"]]["contentString"] = contentString;
+							markerArray[feed_info["id"]]["infowindow"] = infowindow;*/
+						}
+						
+						
+					
+
+				}
+					
+				$(feedSelector).html(feedString); 
+				
+				//grab all of the paths from Xively and then plot them ontop of the nodes
+				xively.datastream.list(pathFeedId,function ( datastreams ) {
+					for(var i = 0; i < datastreams.length; i++) {
+							var name = datastreams[i]["id"];
+							var quality = datastreams[i]["quality"];
+							var rssi = datastreams[i]["rssi"];
+							//just plot quality for now
+							if (name.indexOf("quality_") !=-1){
+								//If 'quality' exist 
+								//Transmission from datastream['id'] from 8-16
+								//Transmission to datastream['id'] from 25-32
+								var macFrom = name.substr(8,16);
+								var macTo = name.substr(25,32);
+								//!! 16-8 = 32-25 + 1
+								
+								// Define a symbol using a predefined path (an arrow)
+								// supplied by the Google Maps JavaScript API.
+								// Change color here?
+								var lineSymbol = {
+								   path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+								   //Icons:
+								};
+
+								  // Create the polyline and add the symbol via the 'icons' property.!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+								var lineCoordinates = [
+									macLocations[macFrom],
+									macLocations[macTo]
+								  ];
+								console.log(macLocations["macFrom"]);
+								
+								
+							var contentString = quality;
+							var line = new google.maps.Polyline({
+								path: lineCoordinates,
+								strokeColor: '#FF0000',	//black
+								strokeOpacity: 1,		//Opacity
+								strokeWeight: 2,		//line width
+								icons: [{
+								  icon: lineSymbol,		//Here we changethe 
+								  offset: '100%'
+								}],
+								map: map,
+								title: contentString,
+								
+							  });
+							}		
+					}
+				});
+			 });
+			
+			//initilize google map
+			  var map;
+			  var infowindow = null;
+			  function initialize() {
+				var mapOptions = {
+					 center: { lat: 42.296499, lng: -83.688685},
+						zoom: 20
+					  };
+					 map = new google.maps.Map(document.getElementById('map-canvas'),
+						  mapOptions);	 
+				}
+				google.maps.event.addDomListener(window, 'load', initialize);
+			 
+		   // Get datastream data from Xively
+		   xively.datastream.get (feedID, datastreamID, function ( datastream ) {
+			// WARNING: This code is only executed when we get a response back from Xively, it will likely execute after the rest your script
+			// NOTE: The variable "datastream" will contain all the Datastream information as an object. The structure of Datastream objects can be found at: 
+			// https://xively.com/dev/docs/api/quick_reference/api_resource_attributes/#datastream
+
+
+			// Display the current value from the datastream
+			$(selector).html( datastream["current_value"] );
+
+			// Getting realtime! The function associated with the subscribe method will be executed every time there is an update to the datastream
+			xively.datastream.subscribe( feedID, datastreamID, function ( event , datastream_updated ) {
+			  // Display the current value from the updated datastream
+			  $(selector).html( datastream_updated["current_value"] );
+			});
+
+		  });
+
+		 /*google api = AIzaSyBxKBU_sJ2cUgUNHpAAN3EOUB5drniKpqo*/
+
+
+		  // WARNING: Code here will continue executing while we get the datastream data from Xively, use the function associated with datastream.get to work with the data, when the request is complete
+		});
+		
+    </script>
+		
+	</body>
+</html>
