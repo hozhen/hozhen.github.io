@@ -7,9 +7,30 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <style type="text/css">
-      html, body, #map-canvas { height: 100%; width: 80%; margin: 0; padding: 0;}
-    </style>
+	<style type="text/css">
+		#map-canvas{
+		width: 600px;
+		height: 500px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 50px;
+		margin-bottom: auto;			
+		}
+	</style>  
+  <!-- <style type="text/css">
+      html, body,
+		#map-canvas { 
+		width: 600px;
+		height: 500px;
+		margin-left: auto;
+		margin-right: auto;
+		<!--
+		height: 100%; 
+		width: 80%; 
+		margin: 0; 
+		padding: 0;
+	  }
+    </style> -->
   <title>BioStation VizMap</title>
   <meta name="description" content="Simple Tutorial - XivelyJS">
   <style type="text/css">
@@ -190,7 +211,8 @@
 						  });
 						
 						google.maps.event.addListener(line, "click", function () {
-							window.open('https://personal.xively.com/manage/pkILtK3MnnkdKN2KowcR/devices/Paths');
+							//window.open('https://personal.xively.com/manage/pkILtK3MnnkdKN2KowcR/devices/Paths');
+							window.open('http://www-personal.umich.edu/~bkerkez/');
 						});
 						
 						
@@ -218,7 +240,7 @@
 	      function initialize() {
 	      	var mapOptions = {
 		      	 center: { lat: 42.296499, lng: -83.688685},
-			        zoom: 5
+			        zoom: 6
 			      };
 			     map = new google.maps.Map(document.getElementById('map-canvas'),
 			          mapOptions);	 
