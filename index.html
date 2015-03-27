@@ -16,7 +16,8 @@
 		margin-top: 50px;
 		margin-bottom: auto;			
 		}
-	</style>  
+	</style>
+  
   <!-- <style type="text/css">
       html, body,
 		#map-canvas { 
@@ -130,11 +131,25 @@
 						var infowindow = new google.maps.InfoWindow({
 					      content: contentString
 					    });
+						
+
+						if (type=="M") {
+							image = 'iconM.png';
+						} else if (type=="N") {
+							image = 'iconN.png';
+						} else if (type=="R") {
+							image = 'iconR.png';
+						} else {
+							image = null;
+						}
+						
+						//var image = 'http://upload.wikimedia.org/wikipedia/en/thumb/8/85/Panda_Express_logo.svg/1024px-Panda_Express_logo.svg.png';
 						var myLatlng = new google.maps.LatLng(lat,lon);
 						var marker = new google.maps.Marker({
 						    position: myLatlng,
 						    map: map,
-						    title: contentString
+						    title: contentString,
+							icon: image
 						});
 						
 						macLocations[macAddress] = myLatlng;
@@ -187,12 +202,16 @@
 		
 
 						
-							if (colour < 80) {
+							if (colour < 60) {
 								Test = "Red";
-							} else if (colour < 90) {
+							} else if (colour < 70) {
+								Test = "Orange";
+							} else if (colour < 80) {
 								Test = "Yellow";
-							} else {
+							} else if (colour < 90) {
 								Test = "Blue";
+							} else {
+								Test = "Gold";
 							}
 
 					
