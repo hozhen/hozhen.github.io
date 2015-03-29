@@ -1,297 +1,135 @@
-
 <!doctype html>
-<html lang="en">
-
-
-
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<!-- http://foundation.zurb.com/templates/blog.html --> <!-- Comment -->
+<html class="no-js" lang="en" data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<style type="text/css">
-		#map-canvas{
-		width: 600px;
-		height: 500px;
-		margin-left: auto;
-		margin-right: auto;
-		margin-top: 50px;
-		margin-bottom: auto;			
-		}
-	</style>
-  
-  <!-- <style type="text/css">
-      html, body,
-		#map-canvas { 
-		width: 600px;
-		height: 500px;
-		margin-left: auto;
-		margin-right: auto;
-		<!--
-		height: 100%; 
-		width: 80%; 
-		margin: 0; 
-		padding: 0;
-	  }
-    </style> -->
-  <title>BioStation VizMap</title>
-  <meta name="description" content="Simple Tutorial - XivelyJS">
-  <style type="text/css">
-    body {
-      padding: 0;
-      margin: 2em;
-      color: #222;
-      text-shadow: 0 1px 0 white;
-      background-color: #ebebeb;
-      font-family: "Helvetica Neue", helvetica, arial, sans-serif;
-      font-size: 0.6em;
-    }
-  </style>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Pandaland</title>
+	<!-- Place this tag in your head or just before your close body tag. Goog-->
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<link rel="stylesheet" href="css/foundation.css"/>
+	<script src="js/vendor/modernizr.js"></script>
 </head>
-
-
-
+<!-- ========== ========== ========== ========== ========== ========== ========== ========== ========== ========== ========== ========== ========== -->
 <body>
-  <h1>Live value visualization</h1>
+<div class="row">
+<div class="large-12 columns">
+<div class="nav-bar right">
+<ul class="button-group">
+<li><a href="http://www-personal.umich.edu/~bkerkez/" class="button">1061</a></li> <!-- Comment Number 1 Link -->
+<li><a href="Panda.html" class="button">Viz</a></li> <!-- Comment Number 2 Link -->
+<li><a href="http://foundation.zurb.com/develop/download.html" class="button">Zurb Foundation</a></li> <!-- Comment Number 3 Link -->
+<li><a href="http://zurb.com" class="button">Zurb</a></li> <!-- Comment Number 3 Link -->
 
-  <h2><small>All Feeds</small> <span id="myfeeds"></span></h2>
-  <h2><small>Live datastream value</small> <span id="myelement"></span></h2>
-  <br><div id="map-canvas"></div></br>
+</ul>
+</div>
+<h1>Ho-Zhen Chen <small>!!!</small></h1>
+<hr/>
+</div>
+</div>
+ 
+ 
+<div class="row">
+ 
+<div class="large-9 columns" role="content">
+<article>
+<h3><a href="#">Hangout #8</a></h3>
+<h6>Written by <a href="http://hozhen.github.io">Ho-Zhen Chen</a> on March 29, 2015.</h6>
+<div class="row">
+<div class="large-6 columns">
+<p>Hello my name is Ho-Zhen Chen. This website is hosted by GitHub and the html background was grabbed from the Zurb (http://zurb.com/) </p>
+<p>Here at the University of Michigan I worked in the Real-Time Water Systems Lab under the supervision of Prof. Kerkez. Link to the lab website can be found upstairs at the 1061 tab, which is the GGBL room number of the lab.</p></div>
+<div class="large-6 columns">
+<img src="11086973_1106071722753212_580627389_n.jpg"/>
+</div>
+</div>
+<p>Previously I've been working on sensor housing design. This year, under the supervision of Prof. Kerkez, I'll be setting up a sensor network at the University's Bio-Station. Hardware design at the current moment has been designed for streamline assembly. And I'm working on the data logging and visualization right now. Program currently used include python for data transmission, HTML for the website design, and JavaScript within the HTML for grabbing data and dynamic interaction.</p>
+<p>Up where the lab website link is located a "VIZ" tab can be found which will redirect to the visualization page deisgn. Currently we have a small network deployed in a near campus location. While the other two are sitting in the lab (the web location are done to test the Google Map interface.</p>
+<p>My contact information can be found below along with my resume for your entertainment. Send me an email and say hi, or even better, send me a postcard!!</p>
+<p>Picture from Xavi going to the MSU farm. Thanks Xavi!!</p>
 
-  <!-- Include jQuery -->
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-  <!-- Include XivelyJS -->
-  <script src="http://d23cj0cdvyoxg0.cloudfront.net/xivelyjs-1.0.4.min.js"></script>
-  <!-- Our Script (should be included in a separate file, only inline for demo purposes) -->
- <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxKBU_sJ2cUgUNHpAAN3EOUB5drniKpqo">
-  </script>
-
-  <script>
-
-    // Make sure the document is ready to be handled
-    $(document).ready(function($) {
-
-      // Set the Xively API key (https://xively.com/users/YOUR_USERNAME/keys)
-      xively.setKey( "0dvfsouvRC6g5GE14dzUuorBQnbTRh7A24BIE9GwnrLv0W8y" );
-
-      // Replace with your own values
-      var feedID        = 267693998,          // Feed ID (the last number on the URL on the feed page on Xively)
-          datastreamID  = "avgLatency";       // Datastream ID
-          selector      = "#myelement";   // Your element on the page - takes any valid jQuery selector
-		  feedSelector  = "#myfeeds";
-			
-		  var macLocations = {}; //used to store lat-lon pairs to plotnetwork paths
-		  var pathFeedId = 0; //used to retrieve path information
-		  var feedString = "<br>";
-		
-		
-		  //get all feedIds first
-		  xively.feed.list ("user=klab&tag=biostation",function ( fd ) {
-		
-			//feedString += JSON.stringify(fd["results"]) + "<br>";
-		
-			for(var i = 0; i < fd["results"].length; i++) {
-					console.log(fd["results"].length);
-					console.log(i);
-					var feed_info = fd["results"][i];
-					//parse through tags to determine the type of node and its mac address
-					var tags = feed_info["tags"];
-					var macAddress = "X";
-
-					for(var j = 0; j < tags.length; j++) {
-						if (tags[j].indexOf("type=") !=-1){
-							//what type of feed do we have, check the tags
-							if (tags[j].indexOf("manager") !=-1){
-								type = "M";
-							}else if (tags[j].indexOf("repeater") !=-1){
-								type = "R";
-							}else if (tags[j].indexOf("node") !=-1){
-								type = "N";
-							}else if (tags[j].indexOf("paths") !=-1){
-								type = "P";
-							}else{
-								type = "X";
-							}
-						}else if (tags[j].indexOf("mac=") !=-1){
-							macAddress = tags[j].substr(tags[j].indexOf("=")+1);
-						}
-					}
-				
-					console.log(type);
-					console.log(macAddress);
-				 
-					if(type=="P"){
-						feedString += feed_info["id"] + ", " + type + "<br>";
-						pathFeedId = feed_info["id"];
-					}else{
-						var lat = feed_info["location"].lat;
-						var lon = feed_info["location"].lon;
-						feedString += feed_info["id"] + ", " + macAddress + ", " + type + ", " + lat +  " " + lon + "<br>";
-						//add google marker data
-						var contentString = type + "<br>FeedId: " + feed_info["id"].toString();
-						var infowindow = new google.maps.InfoWindow({
-					      content: contentString
-					    });
-						
-
-						if (type=="M") {
-							image = 'iconM.png';
-						} else if (type=="N") {
-							image = 'iconN.png';
-						} else if (type=="R") {
-							image = 'iconR.png';
-						} else {
-							image = null;
-						}
-						
-						//var image = 'http://upload.wikimedia.org/wikipedia/en/thumb/8/85/Panda_Express_logo.svg/1024px-Panda_Express_logo.svg.png';
-						var myLatlng = new google.maps.LatLng(lat,lon);
-						var marker = new google.maps.Marker({
-						    position: myLatlng,
-						    map: map,
-						    title: contentString,
-							icon: image
-						});
-						
-						macLocations[macAddress] = myLatlng;
-						
-						google.maps.event.addListener(marker, "click", function () {
-						                infowindow.setContent(this.title);
-						                infowindow.open(map, this);
-						            });
-						
-				
-						/*markerArray[feed_info["id"]] =  {};
-						markerArray[feed_info["id"]]["marker"] = marker;
-						markerArray[feed_info["id"]]["contentString"] = contentString;
-						markerArray[feed_info["id"]]["infowindow"] = infowindow;*/
-					}
-					
-					
-				
-
-			}
-				
-			$(feedSelector).html(feedString); 
-			
-			//grab all of the paths from Xively and then plot them ontop of the nodes
-			xively.datastream.list(pathFeedId,function ( datastreams ) {
-				for(var i = 0; i < datastreams.length; i++) {
-						var name = datastreams[i]["id"];
-						var quality = datastreams[i]["quality"];
-						var colour = datastreams[i]["current_value"];	//EDIT HERE
-						var rssi = datastreams[i]["rssi"];
-						//just plot quality for now
-						if (name.indexOf("quality_") !=-1){
-							var macFrom = name.substr(8,16);
-							var macTo = name.substr(25,32);
-							
-							
-							// Define a symbol using a predefined path (an arrow)
-							// supplied by the Google Maps JavaScript API.
-							var lineSymbol = {
-							   path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
-							};
-
-							  // Create the polyline and add the symbol via the 'icons' property.
-
-							var lineCoordinates = [
-							    macLocations[macFrom],
-							    macLocations[macTo]
-							  ];
-							console.log(macLocations["macFrom"]);
-		
-
-						
-							if (colour < 60) {
-								Test = "Red";
-							} else if (colour < 70) {
-								Test = "Orange";
-							} else if (colour < 80) {
-								Test = "Yellow";
-							} else if (colour < 90) {
-								Test = "Blue";
-							} else {
-								Test = "Gold";
-							}
-
-					
-						var line = new google.maps.Polyline({
-						    path: lineCoordinates,
-							strokeColor: Test,//'#FF0000',							
-							strokeOpacity: 1,
-							strokeWeight: 3,
-						    icons: [{
-						      icon: lineSymbol,
-						      offset: '100%'
-						    }],
-						    map: map,
-						    title: contentString,
-
-						  });
-						
-						google.maps.event.addListener(line, "click", function () {
-							//window.open('https://personal.xively.com/manage/pkILtK3MnnkdKN2KowcR/devices/Paths');
-							window.open('http://www-personal.umich.edu/~bkerkez/');
-						});
-						
-						
-						/*var infowindow = new google.maps.InfoWindow({
-						      content: "contentString"
-						 });
-							
-						google.maps.event.addListener(line, "click", function () {
-							                infowindow.setContent(this.title);
-											infowindow.setPosition(this.pos);
-							                infowindow.open(map, this);
-							            });*/
-						
-						}
-						
-				}
-			});
-				
-		
-		 });
-		
-		//initilize google map
-		  var map;
-		  var infowindow = null;
-	      function initialize() {
-	      	var mapOptions = {
-		      	 center: { lat: 42.296499, lng: -83.688685},
-			        zoom: 6
-			      };
-			     map = new google.maps.Map(document.getElementById('map-canvas'),
-			          mapOptions);	 
-			}
-			google.maps.event.addDomListener(window, 'load', initialize);
-	     
-       // Get datastream data from Xively
-       xively.datastream.get (feedID, datastreamID, function ( datastream ) {
-        // WARNING: This code is only executed when we get a response back from Xively, it will likely execute after the rest your script
-        // NOTE: The variable "datastream" will contain all the Datastream information as an object. The structure of Datastream objects can be found at: 
-        // https://xively.com/dev/docs/api/quick_reference/api_resource_attributes/#datastream
+</article>
+<hr/>
 
 
-        // Display the current value from the datastream
-        $(selector).html( datastream["current_value"] );
+<!-- 
+<article>
+<h3><a href="#">Blog Post Title</a></h3>
+<h6>Written by <a href="#">John Smith</a> on August 12, 2012.</h6>
+<div class="row">
+<div class="large-6 columns">
+<p>New Paragraph</p>
+<p>New Paragraph</p>
+</div>
+<div class="large-6 columns">
+<img src="http://placehold.it/400x240&text=[img]"/>
+</div>
+</div>
+<p>New Paragraph</p>
+<p>New Paragraph</p>
+</article>
+</div>
+-->
+ 
+ 
+<aside class="large-3 columns">
+<h5>Categories</h5>
+<ul class="side-nav">
+<li><a href="#">News</a></li>
+<li><a href="#">Code</a></li>
+<li><a href="#">Design</a></li>
+<li><a href="#">Fun</a></li>
+<li><a href="#">Weasels</a></li>
+</ul>
+<div class="panel">
+<h5>Panda!?</h5>
+<p>
+I am a Taiwanese-American graduate student currently studying at the University of Michigan. I build sensor enclosure and speak basic C, Python, JaveScript, HTML, Mandarin Chinese and English.</p>
+<a href="#">Read More &rarr;</a>
+</div>
+</aside>
+ 
+</div>
+ 
+ 
+<footer class="row">
+<div class="large-12 columns">
+<hr/>
+<div class="row">
+<div class="large-6 columns">
+<p>&copy; Copyright no one at all. Go to town.</p>
+</div>
+<div class="large-6 columns">
+<ul class="inline-list right">
+<li><a href="mailto:hozhen@umich.edu">E-Mail</a></li>
+<li><a href="Ho-Zhen_Chen.pdf">Resume</a></li>
+<li><a href="https://twitter.com/UMhzdc">Twitter</a></li>
+<li><a href="https://www.linkedin.com/pub/ho-zhen-chen/8b/3a5/79b">Linkedin</a></li>
+<li><a href="https://plus.google.com/109617168568427142511">Google+</a></li>
+<!-- Option: call chat voicemail sendfile add userinfo -->
+<li><a href="skype:umhzdc?call ">Skype</a></li>
 
-        // Getting realtime! The function associated with the subscribe method will be executed every time there is an update to the datastream
-        xively.datastream.subscribe( feedID, datastreamID, function ( event , datastream_updated ) {
-          // Display the current value from the updated datastream
-          $(selector).html( datastream_updated["current_value"] );
-        });
 
-      });
-
-	 /*google api = AIzaSyBxKBU_sJ2cUgUNHpAAN3EOUB5drniKpqo*/
-
-
-      // WARNING: Code here will continue executing while we get the datastream data from Xively, use the function associated with datastream.get to work with the data, when the request is complete
-    });
-
-    </script>
-	
-	
+</ul>
+</div>
+</div>
+</div>
 </body>
-</html
+</html>
+
+<!--
+Writting area!!
+
+
+
+
+
+
+
+
+
+
+ -->
+
+
