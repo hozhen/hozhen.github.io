@@ -129,9 +129,12 @@
 						//add google marker data
 						//add link
 						
-						var contentString = type + "<br>FeedId: " + feed_info["id"].toString();
-						var infowindow = new google.maps.InfoWindow({
-					      content: contentString
+						var XivelyLink = "https://personal.xively.com/feeds/" + feed_info["id"].toString()
+						
+						var contentString = type + "<br>FeedId: " + feed_info["id"].toString() + "<br>" + XivelyLink.toString().link();
+
+						var infowindow = new google.maps.InfoWindow({							
+							content: contentString
 					    });
 						
 
