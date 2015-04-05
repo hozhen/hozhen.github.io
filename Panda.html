@@ -129,10 +129,11 @@
 						//add google marker data
 						//add link
 						
-						var xivelyLink = "Link to the Xively Feed!!";
+						//This creates the hyperlink for the contentString
+						var xivelyLink = feed_info["id"].toString();
 						var Linkage = xivelyLink.link("https://personal.xively.com/feeds/" + feed_info["id"].toString());
 						
-						var contentString = type + "<br>FeedId: " + feed_info["id"].toString() + "<br>" + Linkage;
+						var contentString = type + "<br>FeedId: " + Linkage;
 
 						var infowindow = new google.maps.InfoWindow({							
 							content: contentString
