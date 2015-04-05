@@ -209,8 +209,8 @@
 							  ];
 							  
 							console.log(macLocations["macFrom"]);
+							
 		
-
 						
 							if (colour < 60) {
 								Test = "Red";
@@ -224,6 +224,9 @@
 								Test = "Green";
 							}
 
+			
+						
+							
 						var line = new google.maps.Polyline({
 							path: lineCoordinates,
 							strokeColor: Test,//'#FF0000',							
@@ -238,17 +241,40 @@
 						    title: LineInfo,
 
 						  });
-						  
+
 //==========================================
-						var Hello = colour;
+						//var Hello = colour;
+						var Hello = datastreams[i]["current_value"];
 						var World = Hello.link("https://personal.xively.com/manage/pkILtK3MnnkdKN2KowcR/devices/Paths");
 						
 						var LineInfo = "Quality: " + World;
 //						var contentString = type + "<br>FeedId: " + Linkage;						
-						var LineClick = new google.maps.InfoWindow({							
-							content: LineInfo
-					    });						  												
-
+//						var LineClick = new google.maps.InfoWindow({							
+//							content: LineInfo
+//					    });
+//==========================================	
+						  
+ 												
+//==========//==========//==========//==========//==========//==========//==========//==========//==========//==========//==========
+//Click Event Inserted Here!!!!!
+//==========
+//Here we need to change LineInfo According to their MacAddress
+						function createInfoWindow(line,LineInfo){	
+							google.maps.event.addListener(line,'click', function(event) {
+							  infowindow.setContent(LineInfo);
+							  if (event) {
+								 point = event.latLng;
+							  }
+							  infowindow.setPosition(point);
+							  infowindow.open(map);
+							  // map.openInfoWindowHtml(point,html); 
+							}); 			
+						}
+						//Calling above Event (at the end of the loop)! 
+						//This step ensures the quality showing varies among different polyline!!
+						createInfoWindow(line,LineInfo);
+//==========				
+						
 /*						
 						google.maps.event.addListener(line, "click", function (event) {
 							//window.open('https://personal.xively.com/manage/pkILtK3MnnkdKN2KowcR/devices/Paths');
@@ -259,7 +285,7 @@
 							LineClick.open(map);
 //							window.open('http://www-personal.umich.edu/~bkerkez/');
 						});
-*/						
+						
 						google.maps.event.addListener(line,'click', function(event) {
 						  infowindow.setContent(LineInfo);
 						  if (event) {
@@ -269,7 +295,7 @@
 						  infowindow.open(map);
 						  // map.openInfoWindowHtml(point,html); 
 						}); 
-
+*/
 									
 
 
@@ -297,13 +323,21 @@
 						
 				}
 			});
-				
 		
 		 });
+		
+		
+		
+		
+		
 		
 		//initilize google map
 		  var map;
 		  var infowindow = null;
+
+		  
+		  
+
 	      function initialize() {
 	      	var mapOptions = {
 		      	 center: { lat: 42.296499, lng: -83.688685},
@@ -312,8 +346,9 @@
 			     map = new google.maps.Map(document.getElementById('map-canvas'),
 			          mapOptions);	 
 			}
-			google.maps.event.addDomListener(window, 'load', initialize);
-	     
+			
+			google.maps.event.addDomListener(window, 'load', initialize);		
+			
        // Get datastream data from Xively
        xively.datastream.get (feedID, datastreamID, function ( datastream ) {
         // WARNING: This code is only executed when we get a response back from Xively, it will likely execute after the rest your script
