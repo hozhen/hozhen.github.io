@@ -61,7 +61,10 @@
   <!-- Include XivelyJS -->
   <script src="http://d23cj0cdvyoxg0.cloudfront.net/xivelyjs-1.0.4.min.js"></script>
   <!-- Our Script (should be included in a separate file, only inline for demo purposes) -->
- <script type="text/javascript"
+
+  <script src = "http://www.geocodezip.com/scripts/v3_epoly.js"></script>
+
+  <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxKBU_sJ2cUgUNHpAAN3EOUB5drniKpqo">
   </script>
 
@@ -134,7 +137,7 @@
 						var Linkage = xivelyLink.link("https://personal.xively.com/feeds/" + feed_info["id"].toString());
 						
 						var contentString = type + "<br>FeedId: " + Linkage;
-
+//See here==>
 						var infowindow = new google.maps.InfoWindow({							
 							content: contentString
 					    });
@@ -160,7 +163,7 @@
 						});
 						
 						macLocations[macAddress] = myLatlng;
-						
+//And here!!						
 						google.maps.event.addListener(marker, "click", function () {
 						                infowindow.setContent(this.title);
 						                infowindow.open(map, this);
@@ -200,11 +203,11 @@
 							};
 
 							  // Create the polyline and add the symbol via the 'icons' property.
-
 							var lineCoordinates = [
 							    macLocations[macFrom],
 							    macLocations[macTo]
 							  ];
+							  
 							console.log(macLocations["macFrom"]);
 		
 
@@ -218,12 +221,11 @@
 							} else if (colour < 90) {
 								Test = "Blue";
 							} else {
-								Test = "Gold";
+								Test = "Green";
 							}
 
-					
 						var line = new google.maps.Polyline({
-						    path: lineCoordinates,
+							path: lineCoordinates,
 							strokeColor: Test,//'#FF0000',							
 							strokeOpacity: 1,
 							strokeWeight: 3,
@@ -232,14 +234,53 @@
 						      offset: '100%'
 						    }],
 						    map: map,
-						    title: contentString,
+//						    title: contentString,
+						    title: LineInfo,
 
 						  });
+						  
+//==========================================
+						var Hello = colour;
+						var World = Hello.link("https://personal.xively.com/manage/pkILtK3MnnkdKN2KowcR/devices/Paths");
 						
-						google.maps.event.addListener(line, "click", function () {
+						var LineInfo = "Quality: " + World;
+//						var contentString = type + "<br>FeedId: " + Linkage;						
+						var LineClick = new google.maps.InfoWindow({							
+							content: LineInfo
+					    });						  												
+
+/*						
+						google.maps.event.addListener(line, "click", function (event) {
 							//window.open('https://personal.xively.com/manage/pkILtK3MnnkdKN2KowcR/devices/Paths');
-							window.open('http://www-personal.umich.edu/~bkerkez/');
+							//LineClick.content = LineClick;
+							infowindow.position = event.latLng;
+							//LineClick.setPosition(event.latlng);
+							//LineClick.position = event.latLng;
+							LineClick.open(map);
+//							window.open('http://www-personal.umich.edu/~bkerkez/');
 						});
+*/						
+						google.maps.event.addListener(line,'click', function(event) {
+						  infowindow.setContent(LineInfo);
+						  if (event) {
+							 point = event.latLng;
+						  }
+						  infowindow.setPosition(point);
+						  infowindow.open(map);
+						  // map.openInfoWindowHtml(point,html); 
+						}); 
+
+									
+
+
+//For the Above function we want a info window with the quality displayed and a link to it!!						
+
+//						google.maps.event.addListener(line, "click", function () {
+	//					                LineClick.setContent(this.title);
+		//				                LineClick.open(map, this);
+			//			            });
+
+//==========================================
 						
 						
 						/*var infowindow = new google.maps.InfoWindow({
