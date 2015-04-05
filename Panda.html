@@ -212,16 +212,16 @@
 							
 		
 						
-							if (colour < 60) {
-								Test = "Red";
-							} else if (colour < 70) {
-								Test = "Orange";
-							} else if (colour < 80) {
-								Test = "Yellow";
+							if (colour < 80) {
+								Test = "FF0000";//Red
+							} else if (colour < 85) {
+								Test = "FF3300";//Orange
 							} else if (colour < 90) {
-								Test = "Blue";
+								Test = "FFFF00";//Yellow
+							} else if (colour < 95) {
+								Test = "0000CC";//Blue
 							} else {
-								Test = "Green";
+								Test = "00FF00";//Light Green
 							}
 
 			
@@ -274,6 +274,10 @@
 						//Calling above Event (at the end of the loop)! 
 						//This step ensures the quality showing varies among different polyline!!
 						createInfoWindow(line,LineInfo);
+						//Work Accomplished thanks to the following two example link
+						//http://www.geocodezip.com/v3_GenericMapBrowser.asp?filename=I5Polyline.xml
+						//http://stackoverflow.com/questions/4068110/multiple-polylines-and-infowindows-with-google-maps-v3
+						
 //==========				
 						
 /*						
