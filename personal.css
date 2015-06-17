@@ -1,0 +1,99 @@
+body {
+    background-color: #FFFFFF;
+}
+
+
+p {
+    font-family: "Arial";
+    font-size: 20px;
+}
+
+
+/* Navigation  Menu */
+/* Got this from Julia*/
+#navigation { 
+  position: fixed;
+  width:100%;
+/*  border-bottom:1px solid #0000ff; */
+  text-align:center;
+}
+
+#titleBar { 
+  position: center;
+  width:100%;
+  text-align:center;
+}
+
+#navigation > a {
+  width:25%;
+  margin-left:-6px;
+  margin-top:-10px;  
+  display:inline-block;  
+  background-color: white;
+  padding:5px 0px 5px 0px;
+  font-family: Arial;
+  text-decoration: none;
+}
+
+/* Centers blog in middle of page */
+#container { margin:0 auto 0 auto; }
+
+
+#container, #content, #list{ 	position: center;
+width:800px; }
+
+/* Blog Content */
+#content {
+    margin:25px 0 25px 0;
+    line-height:150%;
+}
+
+#list {
+    margin:25px 0 25px 0;
+    line-height:200%;
+	font-family: Arial;
+
+}
+
+#list, #ul {
+margin:25px 25px 25px 275px;
+text-align: left;
+font-family: Arial;
+}
+
+#list, #ul, #li {
+font-family: Arial;
+font-size:20;
+}
+
+h2 {
+text-align: center;
+font-family: Arial;
+}
+
+
+
+/*
+=====
+margin-left:-6px;
+border-left:1px solid #0000ff;
+border-right:1px solid #0000ff;
+=====  
+#WhiteSpace { 
+  width:100%;
+  height:60px;
+  position: auto;
+  border-bottom:1px solid #0000ff;
+  text-align:center;
+}
+=====
+*/
+
+
+
+
+
+
+
+
+
