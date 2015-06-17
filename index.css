@@ -35,6 +35,22 @@ p {
   text-decoration: none;
 }
 
+/* Centers blog in middle of page */
+#container { margin:0 auto 0 auto; }
+
+#container, #content{ 	
+	position: auto;
+	width:800px; 
+}
+	
+
+/* Blog Content */
+#content {
+    margin:25px 0 25px 0;
+    line-height:150%;
+	height:1000px;
+}
+
 /*
 =====
 margin-left:-6px;
