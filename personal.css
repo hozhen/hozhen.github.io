@@ -2,12 +2,15 @@ body {
     background-color: #FFFFFF;
 }
 
-
 p {
     font-family: "Arial";
     font-size: 20px;
 }
 
+h2 {
+text-align: center;
+font-family: Arial;
+}
 
 /* Navigation  Menu */
 /* Got this from Julia*/
@@ -38,38 +41,38 @@ p {
 /* Centers blog in middle of page */
 #container { margin:0 auto 0 auto; }
 
-
-#container, #content, #list{ 	position: center;
-width:800px; }
+#container, #content{ 	
+	position: auto;
+	width:800px; }
+	
 
 /* Blog Content */
 #content {
     margin:25px 0 25px 0;
     line-height:150%;
+	boarder:none;
 }
 
 #list {
-    margin:25px 0 25px 0;
+    margin:0px 0px 0px 0px;
     line-height:200%;
 	font-family: Arial;
-
+	border:none;
 }
 
 #list, #ul {
-margin:25px 25px 25px 275px;
-text-align: left;
-font-family: Arial;
+	margin:0px 0px 0px 275px;
+	text-align: left;
+	font-family: Arial;
+	border:none;
 }
 
-#list, #ul, #li {
-font-family: Arial;
-font-size:20;
+a {
+  border:none;
+  text-decoration:none;
+  color:Blue;
 }
 
-h2 {
-text-align: center;
-font-family: Arial;
-}
 
 
 
