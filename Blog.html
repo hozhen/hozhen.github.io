@@ -58,6 +58,137 @@ Content here!!
 
 -->
 <!-- ========== ========== ========== ========== ========== ========== ========== ========== ========== ========== ========== ========== ========== -->
+<h2>2017-09-02 Assumptions on calculation</h2>
+<p>
+Something that made little sense when I was in school but I've learned to be more important than carrying out computations are the making of assumptions, and checking them. Since quizes and exams are usually sized to be within a certain range of material, getting the right number is not that hard. When I can boost my <a href="https://en.wikipedia.org/wiki/Grading_(education)">GPA</a> by getting these numbers and explanations are strickly required, one falls for the trap of reaching conclusion before checking all assumptions.
+<br>
+<br>
+So let's explain the power of assumption and what we can do with it. What assumption means to me in making the following calculation is I understand there are complex underlying work at play, but I am treating them with a rough estimation of the concluding result. This is good for estimation and giving a number. For the blog post below this is similar to checking which county my destination is.
+<br>
+<br>
+Posted here are images of the <a href="https://eclipse2017.nasa.gov/">2017 eclipse</a> that got everyone looking up at the sky on Aug, 21 2017. Since all life on <a href="https://en.wikipedia.org/wiki/Earth">Earth</a> is supplied by the energy received from the <a href="https://en.wikipedia.org/wiki/Sun">Sun</a>. Let's see how much energy was blocked out by <a href="http://despicableme.wikia.com/wiki/The_Moon">the Moon</a>.
+<br>
+<br>
+<img src = "pictureHere/2017_09_01_SolarInput.png" height="230" width="400" align="middle" hspace="200"/> 
+<br>
+<br>
+Here goes our first assumption.
+<br>
+Assumping that the solar radiation flying towards <a href="https://en.wikipedia.org/wiki/Earth">Earth</a> can be treated as parallel. That is, the amount of solar radiation blocked by the eclipse can be treated as the <a href="https://www.mathsisfun.com/geometry/circle-area.html">center-cross sectional area</a> of the moon. Image above illustrates the concept.
+<br>
+<br>
+</p>
+<!-- ========== -->
+<div class="eq-c" style="width:400px; margin: 0 auto;">
+D<sub>moon</sub>
+= 2,159 miles = 2,159
+<div class="fraction">
+<span class="fup">1.609 km</span><span class="bar">/</span><span class="fdn">1 mile</span>
+</div> = 3,476 km
+</div>
+<!-- ========== -->
+<br>
+<div class="eq-c" style="width:400px; margin: 0 auto;">
+R<sub>moon</sub> = 
+<div class="fraction">
+<span class="fup">D<sub>moon</sub></span><span class="bar">/</span><span class="fdn">2</span>
+</div> = 
+<div class="fraction">  
+<span class="fup">3,476 km</span><span class="bar">/</span><span class="fdn">2</span>
+</div> = 1,738 km = 1,738,000 m
+</div>
+<!-- ========== -->
+<br>
+<div class="eq-c" style="width:600px; margin: 0 auto;">
+A<sub>moon</sub> = 
+π  R<sub>moon</sub><sup>2</sup> = π⋅	1,738,000 m <sup>2</sup> = 9,489,632,999,510.08789 m<sup>2</sup> ~ 9.5*10<sup>12</sup> m<sup>2</sup>
+</div>
+<!-- ========== -->
+<p>
+In calculating the energy blocked by the moon, we treat the reflected solar ray as the average solar irradiance received on Earth. Therefore the unit rejected <a href="https://en.wikipedia.org/wiki/Solar_irradiance">solar irradiance</a> (I) ~ 1,360 <a href="https://en.wikipedia.org/wiki/Watt">Watts</a>/meter <sup>2</sup> (J/s/m<sup>2</sup>).
+<br>
+<br>
+The second assumption we make here.
+<br>
+Unless under Totality, solar insulation is fully received (1,360 <a href="https://en.wikipedia.org/wiki/Watt">Watts</a>/meter<sup>2</sup>, J/s/m<sup>2</sup>) Here in <a href="http://www.amherstdowntown.com/">Amherst</a> we experienced partial eclipse, but I still felt the heat from the sun like we usually do.  
+<br>
+<br>
+From the <a href="https://eclipse2017.nasa.gov/eclipse-who-what-where-when-and-how">eclipse website</a> we learned that <a href="https://eclipse2017.nasa.gov/eclipse-who-what-where-when-and-how">Totality</a> initiated in <a href="http://www.oregon.gov/pages/index.aspx">Oregon</a> at 10:19 AM and ended around  14:44 PM at <a href="http://www.sc.gov/Pages/default.aspx">South Carolina</a>. This gives us the <a href="https://eclipse2017.nasa.gov/eclipse-who-what-where-when-and-how">Totality</a> duration as follow (and <a href="https://www.timeanddate.com/time/travel.html?p1=202&p1o=20170821T101600&p2=1082&p2o=20170821T144800">link</a> to time zone adjestment.)
+<!-- ========== -->
+</p>
+<div class="eq-c" style="width:450px; margin: 0 auto;">
+T<sub>Totality</sub>
+= 1 hr 32 minutes = 92 minutes
+<div class="fraction">
+<span class="fup"> 60 seconds </span><span class="bar">/</span><span class="fdn">1 minute</span>
+</div> = 5520 seconds
+</div>
+<p>
+<!-- ========== -->
+Then the <a href="https://en.wikipedia.org/wiki/Energy">energy</a> NOT received during the 2017 eclipse becomes the product of lapse time, unit energy input, and area covered. 
+<p>
+<!-- ========== -->
+<div class="eq-c" style="width:300px; margin: 0 auto;">
+E<sub>2017 Eclipse</sub> = 
+A<sub>moon</sub>⋅T<sub>Totality</sub>⋅I<sub>Solar Irradiance</sub>
+</div>
+</p>
+<!-- ========== -->
+<p>
+<!-- ========== -->
+<div class="eq-c" style="width:400px; margin: 0 auto;">
+E<sub>2017 Eclipse</sub> = 
+(9.5*10<sup>12</sup> m<sup>2</sup>)⋅(5520 seconds)⋅(1,360 J/s/m<sup>2</sup>)
+</div>
+</p>
+<!-- ========== -->
+<p>
+<!-- ========== -->
+<div class="eq-c" style="width:250px; margin: 0 auto;">
+E<sub>2017 Eclipse</sub> = 
+71.32⋅10<sup>18</sup> Joules
+</div>
+</p>
+<!-- ========== -->
+<p>
+To shrink this number into something that makes even the most remote sense. Let us convert this number into US crude oil consumption. 
+<br>
+<br>
+According to the U.S. <a href="https://www.eia.gov/">Energy Information Administration</a> (EIA). 1 <a href="https://www.eia.gov/energyexplained/index.cfm?page=about_energy_conversion_calculator">barrel</a> of oil is equivalent to 6,031,000,000 Joules (6.03⋅10<sup>9</sup> J). 
+<br>
+<br>
+Dividing the total energy blocked by the moon obtained above by this per barrel energy count. We arrive at a barrel number of 11,825,302,603 barrels. Again from a EIA estimation, the <a href="https://www.eia.gov/tools/faqs/faq.php?id=33&t=6">averaged daily consumption</a> of the United States was 19.63 million barrels (19,630,000 barrels per day). Taking the quotient result of the two numbers yields ~602 days of oil consumptions as reported by the 2016 estimates (602 days ~ 20 months ~ 1 yr and 8 months.)
+<br>
+<br>
+<img src = "pictureHere/2017_09_01_MoonFarm.png" height="300" width="400" align="middle" hspace="250"/> 
+<br>
+<br>
+All guesses should be double checked. So let's think of the situation from the receiving end. "If" we assume that the sun rays approaches parallel before it race past the moon and hits our Earth. Then we can think of the situation at hand as a solar farm the size of the moon's cross-sectional area. Which is calculated previously to be 9.5⋅10<sup>12</sup> m<sup>2</sup>. Now the solar irradiance is the same as before at the rate of 1361 W/m<sup>2</sup> (J/s/m<sup>2</sup>). Multiplying the two values by the time lapse calculated beforehand to be 1 hour and 32 minutes (~92 minutes, ~ 5520 Seconds) we arrive at the same value. 
+<br>
+<br>
+This is still a very large number (and we're assuming 100% of the energy can be utilized.) Let's take into account the best efficiency of current solar panels (>32%) then the number drops to 200 days of crude oil (by barrels). Interesting how this works.
+<br>
+<br>
+<img src = "pictureHere/2017_09_01_2017_Eclipse.jpg" height="600" width="800" align="middle" /> 
+<br>
+<br>
+Here is a picture I took on the way out. Next time I think the fun will be to see how frequent the eclipse have to have in order for us to remain on current pace and meet the <a href="http://www.pbs.org/newshour/bb/why-2-degrees-celsius-is-climate-changes-magic-number/">2 degrees Celsius</a>. 
+<br>
+<br>
+Could this be our way out? Instead of internal control we send excessive product into space to create an umbrella like a beach umbrella on a sunny day to cool off?
+<br>
+<br>
+Make up are and shades are good on a bad day.
+<br>
+- Ho-Zhen [2017-09-02]
+<br>
+<br>
+<br>
+<br>
+</p>
+
+
+<!-- ========== ========== ========== ========== ========== ========== ========== ========== ========== ========== ========== ========== ========== -->
 
 <h2>2017-08-17 Phone call with Mom and PCA</h2>
 <p>
